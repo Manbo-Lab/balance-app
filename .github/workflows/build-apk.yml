@@ -24,8 +24,17 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Point Gradle at the pre-installed Android SDK
+        run: |
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          cat local.properties
+
+      - name: Accept Android SDK licenses & install required components
+        run: |
+          SDKMGR="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMGR" --licenses || true
+          yes | "$SDKMGR" "platforms;android-34" "build-tools;34.0.0" || true
 
       - name: Build release APK
         run: gradle assembleRelease
