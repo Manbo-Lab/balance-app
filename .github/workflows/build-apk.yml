@@ -23,6 +23,8 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: "8.5"
 
       - name: Point Gradle at the pre-installed Android SDK
         run: |
@@ -37,7 +39,7 @@ jobs:
           yes | "$SDKMGR" "platforms;android-34" "build-tools;34.0.0" || true
 
       - name: Build release APK
-        run: gradle assembleRelease
+        run: ./gradlew assembleRelease
 
       - name: Verify APK exists
         run: ls -la app/build/outputs/apk/release/
