@@ -1,4 +1,8 @@
-# AMD 余额
+# balance-app
+
+A lightweight tool for checking API key account balances and usage information.
+
+## AMD 余额
 
 一个查询 AMD Radeon API 每日额度的原生 Android 小工具。
 
