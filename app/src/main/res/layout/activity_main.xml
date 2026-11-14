@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0F172A">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="#E2E8F0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:padding="16dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- 余额页 -->
+        <ScrollView
+            android:id="@+id/pageBalance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="#1E293B"
+                        android:padding="20dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="今日剩余"
+                            android:textColor="#94A3B8"
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:id="@+id/tvRemaining"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="#4ADE80"
+                            android:textSize="46sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                    <com.example.amdbalance.PieChartView
+                        android:id="@+id/pieChart"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="end|center_vertical"/>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout style="@style/StatCard">
+                        <TextView style="@style/StatLabel" android:text="今日已用"/>
+                        <TextView android:id="@+id/tvUsed" style="@style/StatValue"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/StatCard">
+                        <TextView style="@style/StatLabel" android:text="日限额"/>
+                        <TextView android:id="@+id/tvLimit" style="@style/StatValue"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout style="@style/StatCard">
+                        <TextView style="@style/StatLabel" android:text="今日请求"/>
+                        <TextView android:id="@+id/tvRequests" style="@style/StatValue"/>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/StatCard">
+                        <TextView style="@style/StatLabel" android:text="重置时区"/>
+                        <TextView android:id="@+id/tvReset" style="@style/StatValue"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/tvUpdated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:textColor="#64748B"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- 图表页 -->
+        <ScrollView
+            android:id="@+id/pageChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvModelsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="按模型费用（USD）"
+                    android:textColor="#E2E8F0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:id="@+id/chartContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="12dp"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- 设置页 -->
+        <ScrollView
+            android:id="@+id/pageSettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="API Key（Bearer Token）"
+                    android:textColor="#94A3B8"
+                    android:textSize="13sp"/>
+
+                <EditText
+                    android:id="@+id/editKey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="粘贴你的 API Key"
+                    android:textColor="#E2E8F0"
+                    android:background="@drawable/bg_edit"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:layout_marginTop="8dp"/>
+
+                <Button
+                    android:id="@+id/btnSaveKey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="保存并查询"
+                    android:textColor="#082F49"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="密钥只保存在本机，不会上传。查询接口为 AMD /api/v1/usage。"
+                    android:textColor="#64748B"
+                    android:textSize="12sp"
+                    android:layout_marginTop="16dp"/>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    <!-- 底部 Tab -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#1E293B"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/tabBalance"
+            style="@style/TabItem"
+            android:text="余额"/>
+        <TextView
+            android:id="@+id/tabChart"
+            style="@style/TabItem"
+            android:text="图表"/>
+        <TextView
+            android:id="@+id/tabSettings"
+            style="@style/TabItem"
+            android:text="设置"/>
+    </LinearLayout>
+</LinearLayout>
