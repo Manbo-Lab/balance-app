@@ -38,8 +38,10 @@ jobs:
           yes | "$SDKMGR" --licenses || true
           yes | "$SDKMGR" "platforms;android-34" "build-tools;34.0.0" || true
 
-      - name: Build release APK
-        run: ./gradlew assembleRelease
+      - name: Make gradlew executable & Build release APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease
 
       - name: Verify APK exists
         run: ls -la app/build/outputs/apk/release/
